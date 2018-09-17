@@ -63,3 +63,16 @@ function generaGrillaPixeles(){
 
 //Llama a la funcion generaGrillaPixeles
 generaGrillaPixeles();
+
+//Funcion que detecta clic del mouse sobre un div de la paleta de colores
+function capturaColor(){
+  paleta.addEventListener('click', cambiaColorIndicador);
+}
+
+//Llamo funcion capturaColor
+capturaColor();
+
+//Funcion que cambia el color de fondo del indicador de color
+function cambiaColorIndicador(e){
+  document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
+}
