@@ -76,3 +76,16 @@ capturaColor();
 function cambiaColorIndicador(e){
   document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
 }
+
+//Funcion que detecta cual es el pixel sobre el cual se hizo clic
+function seleccionarPixel(){
+  grilla.addEventListener('click', pintaPixel);
+}
+
+//Funcion que pinta pixel
+function pintaPixel(e){
+  e.target.style.backgroundColor = document.getElementById('indicador-de-color').style.backgroundColor;
+}
+
+//Llama a la funcion seleccionarPixel
+seleccionarPixel();
