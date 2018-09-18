@@ -64,22 +64,17 @@ function generaGrillaPixeles(){
 //Llama a la funcion generaGrillaPixeles
 generaGrillaPixeles();
 
-//Funcion que detecta clic del mouse sobre un div de la paleta de colores
-function capturaColor(){
-  paleta.addEventListener('click', cambiaColorIndicador);
-}
+//LISTA DE LISTENERS
+// // // // // // // // //
+//Listener clic del mouse sobre un div de la paleta de colores
+paleta.addEventListener('click', cambiaColorIndicador);
 
-//Llamo funcion capturaColor
-capturaColor();
+//Listener clic pixel
+grilla.addEventListener('click', pintaPixel);
 
 //Funcion que cambia el color de fondo del indicador de color
 function cambiaColorIndicador(e){
   document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
-}
-
-//Funcion que detecta cual es el pixel sobre el cual se hizo clic
-function seleccionarPixel(){
-  grilla.addEventListener('click', pintaPixel);
 }
 
 //Funcion que pinta pixel
@@ -87,5 +82,4 @@ function pintaPixel(e){
   e.target.style.backgroundColor = document.getElementById('indicador-de-color').style.backgroundColor;
 }
 
-//Llama a la funcion seleccionarPixel
-seleccionarPixel();
+
