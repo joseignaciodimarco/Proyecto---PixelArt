@@ -28,9 +28,7 @@ colorPersonalizado.addEventListener('change',
   (function() {
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
-    // Completar para que cambie el indicador-de-color al colorActual
-
-
+    document.getElementById('indicador-de-color').style.backgroundColor = colorActual;
   })
 );
 
@@ -75,6 +73,10 @@ grilla.addEventListener('click', pintaPixel);
 //Funcion que cambia el color de fondo del indicador de color
 function cambiaColorIndicador(e){
   document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
+}
+
+function cambiaColorIndicador(color){
+  alert("hola");
 }
 
 //Funcion que pinta pixel
