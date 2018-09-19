@@ -50,8 +50,9 @@ grilla.addEventListener('mousedown', presionaClick);
 
 //Listener que detecta cuando se suelta click del mouse en grilla
 grilla.addEventListener('mouseup', sueltaClick);
-/*************************************************************/
-//FIN LISTA DE LISTENERS//
+
+//Listener que detecta movimiento del mouse sobre la grilla
+grilla.addEventListener('mouseover', deslizaMouse);
 
 colorPersonalizado.addEventListener('change', 
   (function() {
@@ -60,6 +61,9 @@ colorPersonalizado.addEventListener('change',
     document.getElementById('indicador-de-color').style.backgroundColor = colorActual;
   })
 );
+/*************************************************************/
+//FIN LISTA DE LISTENERS//
+
 
 //Funcion que genera la paleta de colores
 function generaPaleta() {
@@ -90,10 +94,6 @@ function cambiaColorIndicador(e){
   document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
 }
 
-function cambiaColorIndicador(color){
-  alert("hola");
-}
-
 //Funcion que pinta pixel
 function pintaPixel(e){
   e.target.style.backgroundColor = document.getElementById('indicador-de-color').style.backgroundColor;
@@ -109,4 +109,13 @@ function presionaClick(){
 function sueltaClick(){
   console.log('suelta click');
   clickMouse = false;
+}
+
+/*Funcion que valida si el click del click del mouse esta presionado
+(es decir que la variable clickMouse = true). En caso afirmativo
+llama a la funcion pinta pixel*/
+function deslizaMouse(e){
+  if(clickMouse == true){
+    pintaPixel(e);
+  }
 }
