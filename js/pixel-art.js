@@ -21,7 +21,7 @@ var nombreColores = ['White', 'LightYellow',
 ];
 
 //INICIO DECLARACION DE VARIABLES//
-/*************************************************************/
+/*-------------------------------------------------------------*/
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
@@ -34,11 +34,11 @@ var paleta = document.getElementById('paleta');
 
 //Variable que guarda el elemento con id -> grilla-pixeles
 var grilla = document.getElementById('grilla-pixeles');
-/*************************************************************/
+/*-------------------------------------------------------------*/
 //FIN DECLARACION DE VARIABLES//
 
 //INICIO LISTA DE LISTENERS//
-/*************************************************************/
+/*-------------------------------------------------------------*/
 //Listener clic del mouse sobre un div de la paleta de colores
 paleta.addEventListener('click', cambiaColorIndicador);
 
@@ -61,7 +61,8 @@ colorPersonalizado.addEventListener('change',
     document.getElementById('indicador-de-color').style.backgroundColor = colorActual;
   })
 );
-/*************************************************************/
+
+/*-------------------------------------------------------------*/
 //FIN LISTA DE LISTENERS//
 
 
@@ -119,3 +120,10 @@ function deslizaMouse(e){
     pintaPixel(e);
   }
 }
+
+//Funcion que borra dibujo
+$("#borrar").click(function(){
+  $pixeles = $("#grilla-pixeles div");
+  $pixeles.animate({"background-color": "white"}, 1500);
+});
+
