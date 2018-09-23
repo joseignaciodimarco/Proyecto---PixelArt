@@ -127,3 +127,23 @@ $("#borrar").click(function(){
   $pixeles.animate({"background-color": "white"}, 1500);
 });
 
+//Funcion que carga super heroe en la grilla
+$(".imgs li img").click(function(){
+  var $superHeroe = $(this).attr("id");
+  //alert($superHeroe);
+  switch($superHeroe){
+    case "batman": 
+      cargarSuperheroe(batman); 
+      break;
+    case "flash": 
+      cargarSuperheroe(flash); 
+      break;
+    case "invisible": 
+      cargarSuperheroe(invisible); 
+      break;
+    case "wonder": 
+      cargarSuperheroe(wonder); 
+      break;
+  }
+  
+});
