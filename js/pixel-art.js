@@ -34,6 +34,9 @@ var paleta = document.getElementById('paleta');
 
 //Variable que guarda el elemento con id -> grilla-pixeles
 var grilla = document.getElementById('grilla-pixeles');
+
+//Variable boolena que determina si la goma de borrar esta activa o no
+var activa_goma_borrar = false;
 /*-------------------------------------------------------------*/
 //FIN DECLARACION DE VARIABLES//
 
@@ -130,7 +133,6 @@ $("#borrar").click(function(){
 //Funcion que carga super heroe en la grilla
 $(".imgs li img").click(function(){
   var $superHeroe = $(this).attr("id");
-  //alert($superHeroe);
   switch($superHeroe){
     case "batman": 
       cargarSuperheroe(batman); 
@@ -144,6 +146,22 @@ $(".imgs li img").click(function(){
     case "wonder": 
       cargarSuperheroe(wonder); 
       break;
+  }
+});
+
+//Funcion que permite guardar la imagen coloreada
+$("#guardar").click(guardarPixelArt);
+
+//Funcion goma de borrar
+$("#goma_borrar").click(function(){
+  if(activa_goma_borrar == false){
+    $("#goma_borrar").html("Finaliza borrado");
+    $(".cursor-personalizado").css("cursor", "url(img/goma_borrar.png), auto");
+    activa_goma_borrar = true;
+  }else{
+    $("#goma_borrar").html("Goma de borrar");
+    $(".cursor-personalizado").css("cursor", "url(img/cursor.png), auto");
+    activa_goma_borrar = false;
   }
   
 });
