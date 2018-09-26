@@ -64,13 +64,33 @@ colorPersonalizado.addEventListener('change',
     document.getElementById('indicador-de-color').style.backgroundColor = colorActual;
   })
 );
-
 /*-------------------------------------------------------------*/
 //FIN LISTA DE LISTENERS//
 
+//INICIO LLAMADA DE FUNCIONES//
+/*-------------------------------------------------------------*/
+//Llama a la funcion generaPaleta
+generaPaleta();
+
+//Llama a la funcion generaGrillaPixeles
+generaGrillaPixeles();
+/*-------------------------------------------------------------*/
+//FIN LLAMADA DE FUNCIONES//
+
+//INICIO DECLARACION DE FUNCIONES//
+/*-------------------------------------------------------------*/
+//Funcuion que genera la grilla de pixeles
+function generaGrillaPixeles(){
+  console.log("Genera grilla de pixeles");
+  for(var i = 0; i< 1750; i++){
+    var pixel = document.createElement('div');
+    grilla.appendChild(pixel);
+  }
+}
 
 //Funcion que genera la paleta de colores
 function generaPaleta() {
+  console.log("Genera paleta de colores")
   for(var i = 0; i<nombreColores.length; i++){
     var color = document.createElement('div');
     color.style.backgroundColor = nombreColores[i];
@@ -79,28 +99,16 @@ function generaPaleta() {
   }
 }
 
-//Llama a la funcion generaPaleta
-generaPaleta();
-
-//Funcuion que genera la grilla de pixeles
-function generaGrillaPixeles(){
-  for(var i = 0; i< 1750; i++){
-    var pixel = document.createElement('div');
-    grilla.appendChild(pixel);
-  }
-}
-
-//Llama a la funcion generaGrillaPixeles
-generaGrillaPixeles();
-
 //Funcion que cambia el color de fondo del indicador de color
 function cambiaColorIndicador(e){
-  document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
+    document.getElementById('indicador-de-color').style.backgroundColor = e.target.style.backgroundColor;
 }
 
 //Funcion que pinta pixel
 function pintaPixel(e){
-  e.target.style.backgroundColor = document.getElementById('indicador-de-color').style.backgroundColor;
+  if(activa_goma_borrar == false){ //evita que se pinten pixeles con la goma de borrar
+    e.target.style.backgroundColor = document.getElementById('indicador-de-color').style.backgroundColor;
+  }
 }
 
 //Funcion que asigna valor true a la variable clickMouse cuando se hace clic en la grilla
@@ -119,15 +127,23 @@ function sueltaClick(){
 (es decir que la variable clickMouse = true). En caso afirmativo
 llama a la funcion pinta pixel*/
 function deslizaMouse(e){
-  if(clickMouse == true){
+  if(clickMouse == true && activa_goma_borrar == false) { //esto quiere decir que esta por pintar pixel
     pintaPixel(e);
+  }else if(clickMouse == true && activa_goma_borrar == true){ //significa que va a borrar 
+    borraPixel(e);
   }
 }
 
 //Funcion que borra dibujo
 $("#borrar").click(function(){
+  console.log("borra dibujo");
   $pixeles = $("#grilla-pixeles div");
   $pixeles.animate({"background-color": "white"}, 1500);
+
+  //reinicia valores de goma de borrar en caso de que este activa
+  activa_goma_borrar = false;
+  $("#goma_borrar").html("Goma de borrar");
+  $(".cursor-personalizado").css("cursor", "url(img/cursor.png), auto");
 });
 
 //Funcion que carga super heroe en la grilla
@@ -135,15 +151,19 @@ $(".imgs li img").click(function(){
   var $superHeroe = $(this).attr("id");
   switch($superHeroe){
     case "batman": 
+      console.log("carga batman");
       cargarSuperheroe(batman); 
       break;
     case "flash": 
+    console.log("carga flash");
       cargarSuperheroe(flash); 
       break;
     case "invisible": 
+      console.log("carga invisible");
       cargarSuperheroe(invisible); 
       break;
     case "wonder": 
+      console.log("carga wonder");
       cargarSuperheroe(wonder); 
       break;
   }
@@ -155,13 +175,23 @@ $("#guardar").click(guardarPixelArt);
 //Funcion goma de borrar
 $("#goma_borrar").click(function(){
   if(activa_goma_borrar == false){
+    console.log("Desactiva goma de borrar");
     $("#goma_borrar").html("Finaliza borrado");
     $(".cursor-personalizado").css("cursor", "url(img/goma_borrar.png), auto");
     activa_goma_borrar = true;
   }else{
+    console.log("Activa goma de borrar");
     $("#goma_borrar").html("Goma de borrar");
     $(".cursor-personalizado").css("cursor", "url(img/cursor.png), auto");
     activa_goma_borrar = false;
   }
   
 });
+
+//Funcion borra pixel
+function borraPixel(e){
+  e.target.style.backgroundColor = "white";
+}
+
+/*-------------------------------------------------------------*/
+//FIN DECLARACION DE FUNCIONES//
